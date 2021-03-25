@@ -8,9 +8,9 @@ const config: IConfigService = {
     // use path or content keys:
     // certPath: './private/dev/cert.pem',
     // privateKeyPath: './private/dev/private_key.key',
-    certContents: fs.readFileSync('./private/dev/cert.pem').toString('utf8'),
+    certContents: fs.readFileSync('./private/cert.pem').toString('utf8'),
     privateKeyContents: fs
-        .readFileSync('./private/dev/private_key.key')
+        .readFileSync('./private/private_key.key')
         .toString('utf8'),
     cacheTokensPath: './.lastTokens',
     homo: true,
@@ -19,7 +19,7 @@ const config: IConfigService = {
 
 const afip = new AfipServices(config);
 
-const cuit = 27310090854;
+const cuit = 20300392653;
 
 afip.getLastBillNumber({
     Auth: { Cuit: cuit },
@@ -28,6 +28,6 @@ afip.getLastBillNumber({
         PtoVta: 2,
     },
 }).then((res) => {
-    console.log('Last bill number: ', res.CbteNro);
+    console.log('Last bill number: ', res);
     return res.CbteNro;
 });
